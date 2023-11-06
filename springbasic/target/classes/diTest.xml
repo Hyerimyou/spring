@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bar" class="spring.di.Bar"/>
+	<bean id="baz" class="spring.di.Baz" 
+		init-method="start" destroy-method="stop"
+	/>
+	<bean id="bar2" class="spring.di.Bar" autowire-candidate="false"/>
+	
+	<bean id="fooo4" class="spring.di.Fooo" autowire="byType" 
+	p:str="fig" p:i="10000"
+	/>
+	
+	
+	<bean id="foo1" class="spring.di.Foo">
+		<constructor-arg><!-- 생성자매개변수 2개 참조는 ref로 -->
+			<ref bean="bar" />
+		</constructor-arg>
+		<constructor-arg ref="baz" />
+	</bean>
+
+	<bean id="foo2" class="spring.di.Foo"><!-- id는 식별자 class는 클래스의경로및 클래스명 -->
+		<constructor-arg ref="bar" />
+		<constructor-arg ref="baz" />
+		<constructor-arg value="1" /><!-- int i -->
+		<constructor-arg>
+			<value>apple</value><!-- string str -->
+		</constructor-arg>
+	</bean>
+	<bean id="foo3"  class="spring.di.Foo">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>banana</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="fooo1" class="spring.di.Fooo" >
+		<property name="bar" ref="bar"/>
+		<property name="str" value="peach"/>
+		<property name="i" value="100"></property>
+	</bean>
+	<bean id="fooo2" class="spring.di.Fooo" 
+	p:bar-ref="bar" p:str="mango" p:i="1000"
+	/>
+	
+	<bean id="fooo3" class="spring.di.Fooo" p:str="mango" p:i="1000" >
+	<property name="bar" ref="bar"/>
+	</bean>
+	
+	<bean id="fooLookUp" class="spring.di.FooLookUp">
+		<lookup-method name="getBaz" bean="baz"/>
+	</bean>
+
+</beans>
