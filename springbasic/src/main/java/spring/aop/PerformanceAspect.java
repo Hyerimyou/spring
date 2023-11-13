@@ -2,9 +2,19 @@ package spring.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
-
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
+@Component
+@Aspect
 public class PerformanceAspect {
 
+	@Pointcut("execution(public * sayHello(String))")
+	private void pointcut() {
+		
+	}
+	@Around("pointcut()")
 	public Object timeCheck(ProceedingJoinPoint joinPoint) throws Throwable {//첫번째자리 proceedingjoinpoint
 		Signature s = joinPoint.getSignature();//메서드정보
 		String methodName = s.getName();//메서드 이름

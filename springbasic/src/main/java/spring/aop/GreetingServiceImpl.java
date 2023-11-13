@@ -1,7 +1,12 @@
 package spring.aop;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component("greeting")
 public class GreetingServiceImpl implements GreetingService {
 
+	@Value("hi")
 	private String greeting;
 		
 	public void setGreeting(String greeting) {
