@@ -1,0 +1,33 @@
+서버 스타트(이건 디스페처가 따로 코드싹돌아서 bean을 생성해줌)
+BEAN 생성 -> 프로퍼티 주입(@autowired)
+	     핸들러매핑 -요청uri:컨트롤러.메서드 저장
+(요청uri란 localhost-8083/hello 에서 경로부분을 삭제한) /hello에서 context루트구문을 삭제 한것 지정안하면 빈문자열(context루트)		
+	     뷰리졸버 - prefix,suffix 저장	
+
+model : view에 전달되는 데이터를 모아서 저장한 객체
+-디스패쳐서블릿
+-NewArticleController 
+-ArticleService
+-핸들러매핑
+/article/newArticle : GET -> NewArticleController.form
+/article/newArticle : POST -> NewArticleController.submit
+-뷰리졸버
+prefix : /WEB-INF/views/
+suffix : .jsp
+
+클라이언트 요청 올때까지 대기
+요청이 들어오면 
+디스패쳐서블릿이 요청을 받음
+핸들러매핑 -> 요청 uri에 맞는 컨트롤러 넘겨줌
+디스패쳐서블릿이 요청에 맞는 컨트롤러 메서드 호출
+/article/newArticle : GET -> form메서드 호출(링크클릭은 get방식의 호출이다)
+문자열 리턴, 디스패쳐서블릿이 viewname으로 사용, (항상 디스페처서블릿으로 돌아감)
+(메서드 끝나면 호출되는곳으로이동)
+디스페처서블릿이 뷰리졸버에게 전달
+prefix viewname suffix  -> /WEB-INF/views/article/newArticleForm.jsp
+경로 생성 -> 해당  view로 forward, JSP 실행 결과 전송(response)
+전송을하면 post방식으로 요청이들어옴 디스패쳐서블릿이 요청을 받음
+핸들러매핑 -> 요청 uri에 맞는 컨트롤러 넘겨줌
+디스패쳐서블릿이 요청에 맞는 컨트롤러 메서드 호출
+submit이 끝나면
+

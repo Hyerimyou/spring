@@ -1,0 +1,34 @@
+@Repository : DAO 클래스에
+@aspect : 공통관심 기능
+@Component 어노테이션을 이용하면 Bean Configuration 파일에 
+Bean을 따로 등록하지 않아도 사용할 수 있다.
+
+run as > spring boot app > run()실행
+서버 start : 컨테이너만들어지고 컨테이너에서 빈을 만듬
+
+디스페처서블릿 빈 생성
+핸들러매핑 구현객체 빈 생성
+뷰리졸버 구현객체 빈 생성
+@componentscan -@controller/@service
+
+프로퍼티주입
+@autowired : 생성된 빈 중에서 타입에맞는 맞는 빈 주입
+DI : 의존성 주입
+appication.properties설정값들 뷰리졸버에게 저장시켜놓음
+@Controller-@*Mapping 요청정보 ->핸들러매핑에 저장(uri-controller객체)
+
+Controller는 요청에 맞는 메서드를 보내주고화면에 보일결과물 view정보를 디스페처서블릿한테보냄
+디스페처서블릿은 view정보를 view리졸버한테보냄 
+뷰리졸버는 suffix prefix 붙여서 다시 디스페처서블릿한테보여줌
+그경로가서 뷰출력
+
+컨트롤러 Class를 구현하려면 @Controller 과 @RequestMapping 을 이용한다.
+컨트롤러 Class에 @Controller Annotation을 적용한다.
+클라이언트의 요청을 처리할 메서드에 @RequestMapping을 적용한다. 
+설정 파일에 컨트롤러 Class를 빈으로 등록한다.
+
+핸들러 매핑은 말그대로 요청에 맞는 핸들러(=컨트롤러)를 찾는 기능입니다.
+HandlerMapping
+핸들러 매핑을 통해 컨트롤러를 찾을 수 있어야 한다.
+(일단 매핑이 되어야 스프링에서 실행할 수 있기 때문에)
+

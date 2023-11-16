@@ -1,0 +1,18 @@
+@RequestParam("파라미터 이름") 매개변수에 아무것도 없으면 string 값인 null을 저장
+파라미터 값을 변수에 저장
+
+@RequestParam(value = "파라미터 이름", defaultValue="기본값") int 변수
+만약없으면 defaultvalue의 값으로 저장
+defaultvalue 없고 parameter 전달안되면 에러가뜬다
+
+
+?query=리스트&p=1 -> query=리스트 p = 1
+public ModelAndView searchInternal(String query,@RequestParam("p") int pageNumber)
+문자열 query와 매개변수 p를 int pageNumber로 저장 
+
+만약 아무것도 받지않았을경우
+public ModelAndView searchExternal(String query,@RequestParam(value = "p", defaultValue = "1") int pageNumber)
+query = null     p = 1(defalutValue값이다)(전달받은게없어서)
+
+리다이렉트뷰 : 해당페이지로 바로 요청할수있게해줌
+return "redirect:/cookie/view"; -> cookie/view로 바로간다
